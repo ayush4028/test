@@ -3,12 +3,13 @@ import Stepper from './Stepper';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import BACKEND from "../../constant";
 
 export default function Success() {
     const { id } = useParams();
     const [completion, setCompletion] = useState();
 
-    const url = 'http://localhost:9041';
+    const url = BACKEND;
     useEffect(() => {
         const config = {
             method: 'get',

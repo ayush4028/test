@@ -3,8 +3,6 @@ import Form1 from "./components/Form1";
 import Form2 from "./components/Form2";
 import Success from "./components/Success";
 
-// For making a multipage app --> routes are being used
-
 export default function App() {
     return (
         <BrowserRouter>

@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import Stepper from './Stepper';
 import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import BACKEND from '../../constant';
 
 export default function Form1() {
-    const navigate = useNavigate();             // to navigate to next form
+    const navigate = useNavigate();
     const { id } = useParams();
     const [completion, setCompletion] = useState();
 
@@ -15,7 +16,7 @@ export default function Form1() {
     });
     const [loading, setLoading] = useState(false);
 
-    function handleChange(e) {                  // to handle forms
+    function handleChange(e) {
         const { name, value } = e.target;
         setData((prevData) => ({
             ...prevData,
@@ -23,7 +24,7 @@ export default function Form1() {
         }));
     }
 
-    function handleFile(e) {                    // to get the file from the form and input in data
+    function handleFile(e) {
         const file = e.target.files[0];
         console.log(file);  
         if(file === undefined) {
@@ -36,8 +37,8 @@ export default function Form1() {
         }));
     }
 
-    const url = 'http://localhost:9041';
-    const formData = new FormData();                            // form data for creating a multipart form
+    const url = BACKEND;
+    const formData = new FormData();
     formData.append('address', data.address);
     formData.append('phoneNumber', data.phoneNumber);
     formData.append('file', data.image);
@@ -74,7 +75,7 @@ export default function Form1() {
             },
         };
 
-        axios                                               // axios reques to the backend
+        axios
             .request(config)
             .then((res) => {
                 setCompletion(res.data.percentage);

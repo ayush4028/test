@@ -2,16 +2,17 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import Stepper from "./Stepper"
 import axios from "axios";
+import BACKEND from "../../constant";
 
 export default function Form1() {
-    const navigate = useNavigate();         // to navigate to next form
+    const navigate = useNavigate();
     const [data, setData] = useState({
         name: "",
         email: ""
     });
     const [loading, setLoading] = useState(false);
 
-    function handleChange(e) {                      // to handle forms
+    function handleChange(e) {
         const { name, value } = e.target;
         setData(prevData => ({
             ...prevData,
@@ -19,7 +20,7 @@ export default function Form1() {
         }));
     }
 
-    const url = 'http://localhost:9041';
+    const url = BACKEND;
 
     function handleSubmit() {
         const config = {
@@ -32,7 +33,7 @@ export default function Form1() {
         }
 
         setLoading(true);
-        axios                                   // to hit on the api
+        axios
             .request(config)
             .then(res => {
                 console.log(res.data);
@@ -42,10 +43,9 @@ export default function Form1() {
             .finally(() => setLoading(false));
     }
     
-    // two input fields in form 1 and Next button
     return (
         <div className="min-h-screen bg-gradient-to-r from-purple-200 via-purple-400 to-purple-800 flex flex-col justify-center items-center gap-4">
-            <Stepper completion={0} />          
+            <Stepper completion={0} />
 
             <div className="bg-white w-2/4 flex flex-col gap-5 rounded-xl px-10 py-5 font-bold text-lg">
                 <input
